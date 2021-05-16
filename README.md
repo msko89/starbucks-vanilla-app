@@ -573,3 +573,9 @@ new Swiper('.promotion .swiper-container', {
   - https://dev.w3.org/html5/html-author/charref
 - img 요소가 display:block; + margin:0 auto;인 경우  
   width 속성이 없어도 가운데 정렬 가능
+
+### 페이지 상단으로 이동 버튼
+
+---
+
+- gsap scrollToPlugin 사용
