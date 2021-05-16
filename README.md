@@ -451,3 +451,45 @@ new Swiper('.promotion .swiper-container', {
    - youtube iframe api 검색
    - youtube.js 참고
    - onYouTubeIframeAPIReady 함수명 변경하면 안됨
+
+### Parallax Scrolling
+
+---
+
+- 백그라운드 이미지를 고정하여 스크롤 시, 백그라운드 이미지 안의 이미지와 Parallax Scrolling 효과 구현
+- background-attachment: fixed; 이용
+  - viewport 기준으로 이미지 고정
+
+```html
+<section class="pick-your-favorite">
+  <div class="inner">
+    <div class="text-group">
+      <img src="./images/favorite_text1.png" alt="" class="title" />
+      <img src="./images/favorite_text2.png" alt="" class="description" />
+      <div class="more">
+        <a href="javascript:void(0)" class="btn btn--white">자세히 보기</a>
+      </div>
+    </div>
+  </div>
+</section>
+```
+
+```css
+.pick-your-favorite {
+  background-image: url('../images/favorite_bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+.pick-your-favorite .inner {
+  padding: 110px 0;
+}
+.pick-your-favorte .text-group {
+  margin-left: 100px;
+  display: flex;
+  width: 362px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+```
