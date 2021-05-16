@@ -493,3 +493,70 @@ new Swiper('.promotion .swiper-container', {
   justify-content: flex-end;
 }
 ```
+
+### 3D 애니메이션
+
+---
+
+- 개념
+  1. 두개의 이미지 요소를 합친다.(position:absolute;)
+  1. 하나의 이미지를 180도 돌린다.(trasnform:rotateY(-180deg);)
+  1. 뒷면이 보이지 않도록 설정한다.(backface-visibility:hidden;)
+  1. 해당 이미지 hover 시, 180도 돌려준다.
+  1. 자연스러운 효과를 주기 위해 transition 속성을 부여한다.
+  1. 3D 효과를 주기 위해 부모 요소에 perspective 속성을 부여한다.
+
+```html
+<section class="reserve-store">
+  <div class="inner">
+    <div class="medal">
+      <div class="front">
+        <img src="./images/reserve_store_medal_front.png" alt="" />
+      </div>
+      <div class="back">
+        <img src="./images/reserve_store_medal_back.png" alt="" />
+      </div>
+    </div>
+  </div>
+</section>
+```
+
+```css
+.reserve-store .inner {
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.reserve-store .medal {
+  width: 334px;
+  height: 334px;
+  perspective: 600px;
+}
+.reserve-store .medal .front,
+.reserve-store .medal .back {
+  width: 334px;
+  height: 334px;
+  backface-visibility: hidden;
+  transition: 1s;
+}
+.reserve-store .medal .front {
+  position: absolute;
+  transform: rotateY(0deg);
+}
+.reserve-store .medal:hover .front {
+  transform: rotateY(180deg);
+}
+.reserve-store .medal .back {
+  transform: rotateY(-180deg);
+}
+.reserve-store .medal:hover .back {
+  transform: rotateY(0deg);
+}
+```
+
+### ScrollMagic Library
+
+---
+
+- scrollMagic cdn 검색
