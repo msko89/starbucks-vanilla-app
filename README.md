@@ -305,3 +305,149 @@ new Swiper('.notice-line .swiper-container', {
   loop: true,
 });
 ```
+
+- 프로모션
+  1. 확대/축소 시 항상 가운데 배치
+     - 이미지 3개 가로(819px) + 이미지 사이 간격 2개(10px)를 프로모션 가로 영역으로 계산
+     - position absoulte 속성으로 좌측에서 50%에 위치
+     - 가로 전체 영역의 절반만큼 margin-left 감소
+
+```css
+.notice .promotion {
+  height: 693px;
+  background-color: #f6f5ef;
+  position: relative;
+}
+.notice .promotion .swiper-container {
+  width: calc(819px * 3 + 20px);
+  height: 553px;
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  margin-left: calc((819px * 3 + 20px) / -2);
+}
+```
+
+2. 프로모션 수평 슬라이드
+   - 3개씩 5초 간격으로 자동 슬라이드
+   - 활성화된 프로모션만 잘 보이도록(.swiper-slide-active 클래스 이용)
+   - 이전/다음 버튼 및 페이징 표시
+
+```html
+<div class="swiper-pagination"></div>
+<div class="swiper-prev">
+  <div class="material-icons">arrow_back</div>
+</div>
+<div class="swiper-next">
+  <div class="material-icons">arrow_forward</div>
+</div>
+```
+
+```css
+.notice .promotion .swiper-slide {
+  opacity: 0.5;
+  transition: opacity 1s;
+  position: relative;
+}
+.notice .promotion .swiper-slide-active {
+  opacity: 1;
+}
+.notice .promotion .swiper-pagination .swiper-pagination-bullet {
+  background-image: url('../images/promotion_slide_pager.png');
+  background-color: transparent;
+  width: 12px;
+  height: 12px;
+  margin-right: 6px;
+  outline: none;
+}
+.notice .promotion .swiper-pagination .swiper-pagination-bullet:last-child {
+  margin-right: 0;
+}
+.notice .promotion .swiper-pagination .swiper-pagination-bullet-active {
+  background-image: url('../images/promotion_slide_pager_on.png');
+}
+.notice .promotion .swiper-prev,
+.notice .promotion .swiper-next {
+  width: 42px;
+  height: 42px;
+  border: 2px solid #333;
+  border-radius: 50%;
+  position: absolute;
+  top: 300px;
+  z-index: 1;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
+}
+.notice .promotion .swiper-prev {
+  left: 50%;
+  margin-left: -480px;
+}
+.notice .promotion .swiper-next {
+  right: 50%;
+  margin-right: -480px;
+}
+.notice .promotion .swiper-prev:hover,
+.notice .promotion .swiper-next:hover {
+  background-color: #333;
+  color: #fff;
+}
+```
+
+```javascript
+new Swiper('.promotion .swiper-container', {
+  slidesPerView: 3, //한번에 보여줄 슬라이드 개수
+  spaceBetween: 10, //슬라이드 사이 여백
+  centeredSlides: true, //1번 슬라이드가 가운데 보이기
+  autoplay: {
+    delay: 5000,
+  },
+  loop: true,
+  pagination: {
+    el: '.promotion .swiper-pagination', //페이지 번호 요소 선택자
+    clickable: true,
+  },
+  navigation: {
+    prevEl: '.promotion .swiper-prev',
+    nextEl: '.promotion .swiper-next',
+  },
+});
+```
+
+### Youtube iframe API
+
+---
+
+1. 16:9 비율
+   - height 설정 없이 padding-top 값은 부모의 가로 비율로 높이 지정
+   - padding-top: 56.25%;는 가로:세로 비율 16:9
+
+```html
+<section class="youtube">
+  <div class="youtube__area">
+    <div id="player"></div>
+  </div>
+  <div class="youtube__cover"></div>
+</section>
+```
+
+```css
+.youtube .youtube__area {
+  width: 1920px;
+}
+.youtube .youtube__area::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 0;
+  padding-top: 56.25%;
+}
+```
+
+2. Youtube API
+   - youtube iframe api 검색
+   - youtube.js 참고
+   - onYouTubeIframeAPIReady 함수명 변경하면 안됨
