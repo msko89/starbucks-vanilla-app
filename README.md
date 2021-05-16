@@ -5,7 +5,9 @@
 - Project Root 경로에 있으면 자동 설정
 - favicon.png 사용하고 싶으면 index.html에 설정
 
-  - link rel="icon" href="./favicon.png"
+```html
+<link rel="icon" href="./favicon.png" />
+```
 
 - .ico 파일 제작
   - 이미지를 업로드하면 손쉽게 .ico 파일을 제작할 수 있습니다.
@@ -21,6 +23,18 @@
   - og:image: 페이지의 대표 이미지 주소(URL)
   - og:url: 페이지 주소(URL)
 
+```html
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Starbucks" />
+<meta property="og:title" content="Starbucks Coffee Korea" />
+<meta
+  property="og:description"
+  content="스타벅스는 세계에서 가장 큰 다국적 커피 전문점으로, 64개국에서 총 23,187개의 매점을 운영하고 있습니다."
+/>
+<meta property="og:image" content="./images/starbucks_seo.jpg" />
+<meta property="og:url" content="https://starbucks.co.kr" />
+```
+
 # 트위터 카드(Twitter Cards)
 
 - 웹페이지가 트위터로 공유될 때 우선적으로 활용되는 정보를 지정
@@ -30,6 +44,18 @@
   - twitter:description: 페이지의 간단한 설명
   - twitter:image: 페이지의 대표 이미지 주소(URL)
   - twitter:url: 페이지 주소(URL)
+
+```html
+<meta property="twitter:card" content="summary" />
+<meta property="twitter:site" content="Starbucks" />
+<meta property="twitter:title" content="Starbucks Coffee Korea" />
+<meta
+  property="twitter:description"
+  content="스타벅스는 세계에서 가장 큰 다국적 커피 전문점으로, 64개국에서 총 23,187개의 매점을 운영하고 있습니다."
+/>
+<meta property="twitter:image" content="./images/starbucks_seo.jpg" />
+<meta property="twitter:url" content="https://starbucks.co.kr" />
+```
 
 # Google Fonts
 
