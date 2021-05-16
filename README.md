@@ -66,6 +66,7 @@
 
 - https://fonts.google.com/icons?selected=Material+Icons
 - https://material.io/develop/web/getting-started
+- 아이콘 기본 사이즈: 24px
 
 # Header
 
@@ -280,5 +281,27 @@ fadeEls.forEach(function (fadeEl, index) {
     delay: (index + 1) * 0.7,
     opacity: 1,
   });
+});
+```
+
+### 공지사항
+
+---
+
+- 공지사항 수직 슬라이드
+  - swiperjs 라이브러리 사용
+  - 예시) https://codesandbox.io/s/ngoi8?file=/index.html:1404-1877
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+```
+
+```javascript
+//new Swiper(선택자, 옵션)
+new Swiper('.notice-line .swiper-container', {
+  direction: 'vertical',
+  autoplay: true,
+  loop: true,
 });
 ```
