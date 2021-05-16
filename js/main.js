@@ -114,3 +114,18 @@ spyEls.forEach(function (spyEl) {
     .setClassToggle(spyEl, 'show')
     .addTo(new ScrollMagic.Controller());
 });
+
+new Swiper('.awards .swiper-container', {
+  slidesPerView: 5, //한번에 보여줄 슬라이드 개수
+  spaceBetween: 30, //슬라이드 사이 여백
+  centeredSlides: true, //1번 슬라이드가 가운데 보이기
+  autoplay: true,
+  loop: true,
+  navigation: {
+    prevEl: '.promotion .swiper-prev',
+    nextEl: '.promotion .swiper-next',
+  },
+});
+
+const yearEl = document.querySelector('.this-year');
+yearEl.textContent = new Date().getFullYear();

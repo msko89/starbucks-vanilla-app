@@ -560,3 +560,16 @@ new Swiper('.promotion .swiper-container', {
 ---
 
 - scrollMagic cdn 검색
+- https://github.com/janpaepke/ScrollMagic
+
+### Footer
+
+---
+
+- `&copy;` &copy;
+- `&lt;` &lt;
+- `&gt;` &gt;
+- html entities 검색
+  - https://dev.w3.org/html5/html-author/charref
+- img 요소가 display:block; + margin:0 auto;인 경우  
+  width 속성이 없어도 가운데 정렬 가능
