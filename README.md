@@ -579,3 +579,30 @@ new Swiper('.promotion .swiper-container', {
 ---
 
 - gsap scrollToPlugin 사용
+
+<br/>
+<br/>
+<br/>
+
+# 정리
+
+1. html head
+   - favicon
+     - favicon.ico는 index.html와 동일 위치이면 자동으로 설정
+     - favicon.png파일로 설정하고 싶은 경우 link 태그로 명시
+   - Open Graph
+     - 소셜 미디어로 공유할 때 사용되는 정보
+   - Reset CSS
+     - https://www.jsdelivr.com/package/npm/reset-css 접속하여 reset.min.css 복사 및 적용
+   - Google Fonts
+     - https://fonts.google.com/
+     - 원하는 폰트 검색 및 선택
+     - 실제 사용할 폰트 굵기만 선택. 너무 많이 선택 시 용량이 커짐
+     - link 태그 복사해서 추가 및 css에 font-family 속성 적용
+   - Google Material Icons
+     - https://material.io/develop/web/getting-started
+     - 위 사이트에서 link 태그 복사해서 적용
+     - https://fonts.google.com/icons?selected=Material+Icons
+     - 위 사이트에서 원하는 아이콘 검색
+     - 아이콘 적용은 .material-icons 클래스(div/span 태그)안에 해당 아이콘명 입력
+     - 아이콘 기본 사이즈는 24px
