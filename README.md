@@ -730,7 +730,7 @@ header .sub-menu ul.menu li:first-child:before {
 1. 메뉴명과 메뉴 내용 두개의 영역으로 나눈다.
 1. 메뉴 내용 부분은 숨겨놓고 메뉴명에 마우스가 올라갈 때 보여준다.
 1. (★중요) 메뉴 내용은 부모 요소가 아닌 브라우저 기준으로 꽉 채워서 보여주기 위해  
-   width:100%; position: fixed; left: 0; 속성을 사용한다.
+   width:100%; position: fixed; left: 0; 속성을 사용한다. (viewport 기준)
    - position: absolute;를 사용하면 부묘 요소를 기준으로 하기 때문에 좌우 끝까지 늘어날 수 없다.
    - top, bottom 속성을 사용하지 않아 수직 위치 값이 없으면 요소의 원래 위치를 그대로 사용한다.
 
