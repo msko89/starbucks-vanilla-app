@@ -586,23 +586,193 @@ new Swiper('.promotion .swiper-container', {
 
 # 정리
 
-1. html head
-   - favicon
-     - favicon.ico는 index.html와 동일 위치이면 자동으로 설정
-     - favicon.png파일로 설정하고 싶은 경우 link 태그로 명시
-   - Open Graph
-     - 소셜 미디어로 공유할 때 사용되는 정보
-   - Reset CSS
-     - https://www.jsdelivr.com/package/npm/reset-css 접속하여 reset.min.css 복사 및 적용
-   - Google Fonts
-     - https://fonts.google.com/
-     - 원하는 폰트 검색 및 선택
-     - 실제 사용할 폰트 굵기만 선택. 너무 많이 선택 시 용량이 커짐
-     - link 태그 복사해서 추가 및 css에 font-family 속성 적용
-   - Google Material Icons
-     - https://material.io/develop/web/getting-started
-     - 위 사이트에서 link 태그 복사해서 적용
-     - https://fonts.google.com/icons?selected=Material+Icons
-     - 위 사이트에서 원하는 아이콘 검색
-     - 아이콘 적용은 .material-icons 클래스(div/span 태그)안에 해당 아이콘명 입력
-     - 아이콘 기본 사이즈는 24px
+## 1. html head
+
+---
+
+- favicon
+  - favicon.ico는 index.html와 동일 위치이면 자동으로 설정
+  - favicon.png파일로 설정하고 싶은 경우 link 태그로 명시
+- Open Graph
+  - 소셜 미디어로 공유할 때 사용되는 정보
+- Reset CSS
+  - https://www.jsdelivr.com/package/npm/reset-css 접속하여 reset.min.css 복사 및 적용
+- Google Fonts
+  - https://fonts.google.com/
+  - 원하는 폰트 검색 및 선택
+  - 실제 사용할 폰트 굵기만 선택. 너무 많이 선택 시 용량이 커짐
+  - link 태그 복사해서 추가 및 css에 font-family 속성 적용
+- Google Material Icons
+  - https://material.io/develop/web/getting-started
+  - 위 사이트에서 link 태그 복사해서 적용
+  - https://fonts.google.com/icons?selected=Material+Icons
+  - 위 사이트에서 원하는 아이콘 검색
+  - 아이콘 적용은 .material-icons 클래스(div/span 태그)안에 해당 아이콘명 입력
+  - 아이콘 기본 사이즈는 24px
+
+<br/>
+<br/>
+
+## 2. Header
+
+---
+
+- ### 유용한 CSS
+
+  1. 가운데 정렬(확대/축소해도 가운데 배치)
+     - 가로(width) 선언 및 margin:0 auto;
+  2. 수직 center 정렬
+     - positon: absolute; top:0; bottom:0; margin: auto; height: 90px;
+     - 브라우저가 가운데를 맞추기 위해 `높이(height) 선언 필수`
+  3. 수평 center 정렬은 수직과 반대
+     - top -> left / bottom -> right / height -> width
+
+<br/>
+<br/>
+
+- ### 서브메뉴 돋보기(검색) 버튼 원리
+
+  ***
+
+  #### 원리
+
+  1.  기본은 돋보기(검색) 버튼
+  1.  버튼 클릭 시, input이 늘어나고 돋보기(검색) 버튼 사라짐
+  1.  input focus가 사라질 때 원상태로 복귀
+
+  ***
+
+  #### 구현
+
+  1.  javascript에서 검색 버튼과 input element에 접근하여 검색버튼 클릭 시, input을 focus 하는 이벤트리스너 추가
+
+  ```javascript
+  const searchEl = document.querySelector('.search');
+  const searchInputEl = searchEl.querySelector('input');
+
+  searchEl.addEventListener('click', function () {
+    searchInputEl.focus();
+  });
+  ```
+
+  2.  input foucs 시, 클래스를 추가하여 input 요소 스타일 변경. 버튼 아이콘은 숨김 처리
+
+  ```javascript
+  searchInputEl.addEventListener('focus', function () {
+    searchEl.classList.add('focused');
+    searchInputEl.setAttribute('placeholder', '통합검색');
+  });
+  ```
+
+  ```css
+  header .sub-menu .search input:focus {
+    width: 190px;
+    border-color: #669900;
+  }
+  header .sub-menu .search.focused .material-icons {
+    opacity: 0;
+  }
+  ```
+
+  3.  input blur 이벤트에서 추가했던 클래스를 제거하여 원상태로 복귀
+
+  ```javascript
+  searchInputEl.addEventListener('blur', function () {
+    searchEl.classList.remove('focused');
+    searchInputEl.setAttribute('placeholder', '');
+  });
+  ```
+
+<br/>
+<br/>
+
+- ### 태그 사이에 구분선 추가
+
+---
+
+#### 원리
+
+1. 가상요소 사용(::before)
+1. 가상요소는 `content 속성` 필수
+1. 가상요소는 `인라인 요소`이기 때문에 가로,세로, 위아래 여백을 주기 위해 `블럭 속성` 필요
+1. position:absoulte; 선언 시, 인라인 요소는 자동으로 블럭 요소로 변경됨
+
+#### 구현
+
+1. li 태그 사이에 가상요소로 1px의 선을 추가
+1. 첫번째 자식 요소는 숨김처리
+
+```ccc
+header .sub-menu ul.menu li::before {
+  content: '';
+  width: 1px;
+  height: 12px;
+  background-color: #e5e5e5;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+header .sub-menu ul.menu li:first-child:before {
+  display: none;
+}
+```
+
+<br/>
+<br/>
+
+- ### 드롭다운 메뉴
+
+---
+
+#### 원리
+
+1. 메뉴명과 메뉴 내용 두개의 영역으로 나눈다.
+1. 메뉴 내용 부분은 숨겨놓고 메뉴명에 마우스가 올라갈 때 보여준다.
+1. (★중요) 메뉴 내용은 부모 요소가 아닌 브라우저 기준으로 꽉 채워서 보여주기 위해  
+   width:100%; position: fixed; left: 0; 속성을 사용한다.
+   - position: absolute;를 사용하면 부묘 요소를 기준으로 하기 때문에 좌우 끝까지 늘어날 수 없다.
+   - top, bottom 속성을 사용하지 않아 수직 위치 값이 없으면 요소의 원래 위치를 그대로 사용한다.
+
+#### 구현
+
+1. 메뉴명 스타일 구현
+
+```css
+header .main-menu {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+}
+header .main-menu .item .item__name {
+  padding: 10px 20px 34px 20px;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+}
+header .main-menu .item:hover .item__name {
+  background-color: #2c2a29;
+  color: #669900;
+  border-radius: 6px 6px 0 0;
+}
+```
+
+2. 메뉴 내용 스타일 구현(default는 숨김처리)
+
+```css
+header .main-menu .item .item__contents {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  display: none;
+}
+```
+
+3. 메뉴에 마우스 hover 시 메뉴 내용 노출
+
+```css
+header .main-menu .item:hover .item__contents {
+  display: block;
+}
+```
