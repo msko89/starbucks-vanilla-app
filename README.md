@@ -289,7 +289,7 @@ fadeEls.forEach(function (fadeEl, index) {
 ---
 
 - 공지사항 수직 슬라이드
-  - swiperjs 라이브러리 사용
+  - swiperjs 사용
   - 예시) https://codesandbox.io/s/ngoi8?file=/index.html:1404-1877
 
 ```html
@@ -617,14 +617,14 @@ new Swiper('.promotion .swiper-container', {
 
 ---
 
-- ### 유용한 CSS
+- ### **`유용한 CSS`**
 
-  1. 가운데 정렬(확대/축소해도 가운데 배치)
+  1. **가운데 정렬(확대/축소해도 가운데 배치)**
      - 가로(width) 선언 및 margin:0 auto;
-  2. 수직 center 정렬
+  2. **수직 center 정렬**
      - positon: absolute; top:0; bottom:0; margin: auto; height: 90px;
      - 브라우저가 가운데를 맞추기 위해 `높이(height) 선언 필수`
-  3. 수평 center 정렬은 수직과 반대
+  3. **수평 center 정렬은 수직과 반대**
      - top -> left / bottom -> right / height -> width
 
 <br/>
@@ -634,7 +634,7 @@ new Swiper('.promotion .swiper-container', {
 
   ***
 
-  #### 원리
+  #### **`원리`**
 
   1.  기본은 돋보기(검색) 버튼
   1.  버튼 클릭 시, input이 늘어나고 돋보기(검색) 버튼 사라짐
@@ -642,9 +642,9 @@ new Swiper('.promotion .swiper-container', {
 
   ***
 
-  #### 구현
+  #### **`구현`**
 
-  1.  javascript에서 검색 버튼과 input element에 접근하여 검색버튼 클릭 시, input을 focus 하는 이벤트리스너 추가
+  1.  **javascript에서 검색 버튼과 input element에 접근하여 검색버튼 클릭 시, input을 focus 하는 이벤트리스너 추가**
 
   ```javascript
   const searchEl = document.querySelector('.search');
@@ -655,7 +655,7 @@ new Swiper('.promotion .swiper-container', {
   });
   ```
 
-  2.  input foucs 시, 클래스를 추가하여 input 요소 스타일 변경. 버튼 아이콘은 숨김 처리
+  2.  **input foucs 시, 클래스를 추가하여 input 요소 스타일 변경. 버튼 아이콘은 숨김 처리**
 
   ```javascript
   searchInputEl.addEventListener('focus', function () {
@@ -674,7 +674,7 @@ new Swiper('.promotion .swiper-container', {
   }
   ```
 
-  3.  input blur 이벤트에서 추가했던 클래스를 제거하여 원상태로 복귀
+  3.  **input blur 이벤트에서 추가했던 클래스를 제거하여 원상태로 복귀**
 
   ```javascript
   searchInputEl.addEventListener('blur', function () {
@@ -690,14 +690,14 @@ new Swiper('.promotion .swiper-container', {
 
 ---
 
-#### 원리
+#### **`원리`**
 
 1. 가상요소 사용(::before)
 1. 가상요소는 `content 속성` 필수
 1. 가상요소는 `인라인 요소`이기 때문에 가로,세로, 위아래 여백을 주기 위해 `블럭 속성` 필요
 1. position:absoulte; 선언 시, 인라인 요소는 자동으로 블럭 요소로 변경됨
 
-#### 구현
+#### **`구현`**
 
 1. li 태그 사이에 가상요소로 1px의 선을 추가
 1. 첫번째 자식 요소는 숨김처리
@@ -725,7 +725,7 @@ header .sub-menu ul.menu li:first-child:before {
 
 ---
 
-#### 원리
+#### **`원리`**
 
 1. 메뉴명과 메뉴 내용 두개의 영역으로 나눈다.
 1. 메뉴 내용 부분은 숨겨놓고 메뉴명에 마우스가 올라갈 때 보여준다.
@@ -734,9 +734,9 @@ header .sub-menu ul.menu li:first-child:before {
    - position: absolute;를 사용하면 부묘 요소를 기준으로 하기 때문에 좌우 끝까지 늘어날 수 없다.
    - top, bottom 속성을 사용하지 않아 수직 위치 값이 없으면 요소의 원래 위치를 그대로 사용한다.
 
-#### 구현
+#### **`구현`**
 
-1. 메뉴명 스타일 구현
+1. **메뉴명 스타일 구현**
 
 ```css
 header .main-menu {
@@ -758,7 +758,7 @@ header .main-menu .item:hover .item__name {
 }
 ```
 
-2. 메뉴 내용 스타일 구현(default는 숨김처리)
+2. **메뉴 내용 스타일 구현(default는 숨김처리)**
 
 ```css
 header .main-menu .item .item__contents {
@@ -769,10 +769,159 @@ header .main-menu .item .item__contents {
 }
 ```
 
-3. 메뉴에 마우스 hover 시 메뉴 내용 노출
+3. **메뉴에 마우스 hover 시 메뉴 내용 노출**
 
 ```css
 header .main-menu .item:hover .item__contents {
   display: block;
+}
+```
+
+<br/>
+<br/>
+
+- ### GSAP Library
+
+---
+
+    - javascript Animation Library
+    - https://cdnjs.com/libraries/gsap
+
+#### **`사용법`**
+
+```javascript
+gsap.to(요소, 시간, 옵션);
+
+const badgeEl = document.querySelector('header .badges');
+
+//뱃지 Element가 0.6초 동안 사라진다
+gsap.to(badgeEl, 0.6, {
+  opacity: 0,
+  display: 'none',
+});
+
+const fadeEls = document.querySelectorAll('.fade-in');
+
+//순차적으로 보여줄 요소들을 0.7초 간격으로 보여준다
+fadeEls.forEach(function (fadeEl, index) {
+  gsap.to(fadeEl, 1, {
+    delay: (index + 1) * 0.7,
+    opacity: 1,
+  });
+});
+```
+
+<br/>
+<br/>
+
+- ### Swiper API
+
+---
+
+    - Touch Slider
+    - https://swiperjs.com/
+
+#### **`사용법`**
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+```
+
+```javascript
+//new Swiper(선택자, 옵션)
+new Swiper('.notice-line .swiper-container', {
+  direction: 'vertical', //slide 방향(default:'horizontal')
+  autoplay: true, //자동재생 여부
+  loop: true, //반복여부
+  slidesPerView: 3, //한번에 보여줄 슬라이드 개수
+  spaceBetween: 10, //슬라이드 사이 여백
+  centeredSlides: true, //1번 슬라이드가 가운데 보이기
+  pagination: {
+    el: '.promotion .swiper-pagination', //페이지 번호 요소 선택자
+    clickable: true,
+  },
+  navigation: {
+    prevEl: '.promotion .swiper-prev', //이전버튼 요소
+    nextEl: '.promotion .swiper-next', //다음버튼 요소
+  },
+  //  autoplay: {
+  //   delay: 5000, //autoplay 옵션
+  // }
+});
+```
+
+<br/>
+<br/>
+
+- ### Youtube API
+
+---
+
+    - 가로:세로 비율
+
+      - height 설정 없이 padding-top을 부모의 가로 비율로 높이 지정
+      - ex) width: 1920px; 이고 padding-top:56.25%인 경우 가로:세로 비율은 16:9
+     heigth = 1920 \* 9 / 16
+
+    - https://developers.google.com/youtube/iframe_api_reference?hl=ko#Requirements
+
+#### **`사용법`**
+
+1. Youtube API 코드가 다운로드 되는 즉시 `onYouTubeIframeAPIReady` 함수를 실행하기 때문에 함수명을 변경하면 안된다.
+
+```html
+<script defer src="./js/youtube.js"></script>
+<div id="player"></div>
+```
+
+```javascript
+youtube.js;
+
+var tag = document.createElement('script');
+tag.src = 'https://www.youtube.com/iframe_api';
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+function onYouTubeIframeAPIReady() {
+  new YT.Player('player', {
+    videoId: 'An6LvWQuj_8', //최초 재생할 유튜브 영상 ID
+    playerVars: {
+      autoplay: true, //자동재생 유무
+      loop: true, //반복재생 유무
+      playlist: 'An6LvWQuj_8', //반복 재생할 유튜브 영상 ID 목록
+    },
+    events: {
+      onReady: function (event) {
+        event.target.mute(); //음소거
+      },
+    },
+  });
+}
+```
+
+<br/>
+<br/>
+
+- ### Parallax Scrolling
+
+---
+
+    - 배경과 컨텐츠의 움직임에 차이를 두어 평면에 공간적 깊이를 더해주는 시각적 효과
+
+#### **`원리`**
+
+1. 부모 요소의 백그라운드 이미지를 viewport 기준으로 고정시키고(fixed) 이미지를 제일 크게 설정(cover)
+1. 스크롤 시, 부모 요소는 고정되어 자식 요소만 움직이는 시각적 효과를 보여줌
+
+#### **`구현`**
+
+```css
+.pick-your-favorite {
+  background-image: url('../images/favorite_bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
 }
 ```
