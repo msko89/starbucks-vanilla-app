@@ -925,3 +925,7 @@ function onYouTubeIframeAPIReady() {
   background-size: cover;
 }
 ```
+
+# 결론
+
+- CSS는 어렵다
